@@ -1,6 +1,5 @@
-1.7 for small numbers, 0.001 in good-enough? may be quite big and cause large errors 
-    for large numbers, you become prone to overflow and the last digits can be quite large
-    ```
+// 1.7 for small numbers, 0.001 in good-enough? may be quite big and cause large errors 
+//     for large numbers, you become prone to overflow and the last digits can be quite large
 (define (sqrt x)
   (sqrt-iter 1.0 x))
 
@@ -19,4 +18,3 @@
 (define (good-enough? guess x)
   (< (abs (- (improve guess x) guess))
      (abs (* guess 0.001))))
-    ```
