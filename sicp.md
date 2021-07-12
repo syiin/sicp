@@ -17,12 +17,14 @@ Useful definitions
 1. _Predicates_ - an expression or procedure evaluated to true or false `(> x 0)`
 1. _Formal parameters_ - the actual parameters given to a procedure  ie. the `x` and `y` in `(define multiply x y)`
 
+Notice functions are NOT procedures: f(x) -> 2x + 6 and g(x) -> 2(x+3), these are the SAME functions but DIFFERENT procedures
+
 ## The Evaluation Rule
 1. Evaluate the subexpressions of the combination
 1. Apply the procedure that is the value of the left most subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands)
 
 ## Compound Procedures
-1. when a compound operation can be given a name and referred to as a unit\
+1. when a compound operation can be given a name and referred to as a unit
 1. can also be nested
 ```
 (define (sum-of-squares x y)
@@ -155,3 +157,36 @@ a given problem.
     (sqrt-iter 1.0)
   )
   ```
+
+### Ex.1.16
+- Because the counter does not decrement uniformly (ie. that's what makes this procedure logarithmic in steps), you cannot work through it with a table stepping through one step at a time. Each case has to be considered with its own branch. 
+
+ie. The below kind of thinking got us nowhere even though it looked vaguely in the right direction
+
+```
+n     b        a
+_     _        _
+1     2^2      2
+2     2^4      4
+3     2^8      8
+4     2^16     16
+```
+
+You have to think of each case separately with its own bifurcations in the tree, like this case for `(fast_iter_expt 2 6 1)`
+```
+
+(define (fast_iter_expt b n a)
+  (cond (( = n 0 ) a )
+  ((even? n) ( fast_iter_expt ( * b b ) ( / n 2 ) a ))
+  ( else ( fast_iter_expt b ( - n 1 ) ( * b a) ))
+  )
+)
+
+
+n     b        a
+_     _        _
+6     2^0      1
+3     2^2      1
+2     2^2      2^2
+1     2^4      2^6
+```
