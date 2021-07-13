@@ -190,3 +190,29 @@ _     _        _
 2     2^2      2^2
 1     2^4      2^6
 ```
+
+### Ex.1.19
+
+Why does running the transformation twice halve the number of steps instead of just skipping 2 steps?
+ie.
+a = b.q + a.q + a.p
+b = a.q + b.p
+
+so, 
+a' = (a.q + b.p).q + (b.q + a.q + a.p).q + (b.q + a.q + a.p).p = (2pq + q^2).b + (2q^2 + 2pq + p^2).a
+b' = (b.q + a.q + a.p).q + (a.q + b.p).p = (p^2 + q^2).b + (2qp + q^2).a 
+
+therefore,
+
+q' = 2qp + q^2
+
+what about p'?
+p' = p^2 + q^2
+
+notice from a',
+(2q^2 + 2pq + p^2).a = (p' + q').a
+2q^2 + 2pq + p^2 = (p' + q')
+                 = (2qp + q^2 + p^2 + q^2)
+                 = 2q^2 + 2pq + p^
+
+
