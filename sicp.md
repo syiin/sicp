@@ -194,6 +194,7 @@ _     _        _
 ### Ex.1.19
 
 Why does running the transformation twice halve the number of steps instead of just skipping 2 steps?
+
 ie.
 a = b.q + a.q + a.p
 b = a.q + b.p
@@ -213,6 +214,9 @@ notice from a',
 (2q^2 + 2pq + p^2).a = (p' + q').a
 2q^2 + 2pq + p^2 = (p' + q')
                  = (2qp + q^2 + p^2 + q^2)
-                 = 2q^2 + 2pq + p^
+                 = 2q^2 + 2pq + p^2
 
-
+Consider that:
+  1. a transformation run twice IS a transformation squared (remember our linear algebra)
+      Q * D * D * D * D * D * D * D * Q^-1 = Q * (D * D) * (D * D) * (D * D) * Q^-1
+  1. also, like `fast_expt` case in Ex1.16, conducting the operation once results in one step but squaring it skips more steps.
