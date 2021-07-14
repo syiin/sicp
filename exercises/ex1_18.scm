@@ -1,43 +1,38 @@
-(define (double a)
-  (+ a a)
-)
-
-(define (halve a)
-  (define (iter counter)
-    (cond 
-      ((= (double counter) a) counter)
-      ((< (double counter) a) (+ counter 1))
-      (else (iter (- counter 1)))
-    )
-  )
-  (iter a)
-)
-
 (define (halve a)
   (/ a 2)
 )
 
-(define (fast_mult_iter a b sum terminator)
-  (cond 
-  (( = b terminator ) sum )
-  ((even? b) (fast_mult_iter a (halve b) (double sum) terminator))
-  (else (fast_mult_iter a (- b 1) (+ sum a) terminator))
+(define (double a)
+  (+ a a)
+)
+
+(define (fast_iter_expt b n a)
+  (cond (( = n 0 ) a )
+  ((even? n) ( fast_iter_expt ( * b b ) ( / n 2 ) a ))
+  ( else ( fast_iter_expt b ( - n 1 ) ( * b a) ))
   )
 )
 
 (define (fast_mult a b)
-  (if (odd? b)
-    (fast_mult_iter a b 0 0)
-    (fast_mult_iter a b a 1)
+  (cond 
+  (( = b 1 ) a )
+  ((even? b) (double (fast_mult a (halve b))))
+  (else ( + a (fast_mult a (- b 1) )))
   )
 )
 
-(fast_mult 4 2)
-(fast_mult 4 3)
-(fast_mult 4 4)
-(fast_mult 4 5)
-(fast_mult 4 6)
-(fast_mult 4 7)
-(fast_mult 4 8)
 
-(fast_mult 3 9)
+(define (fast_mult_iter a b sum)
+  (cond 
+  (( = b 0 ) sum )
+  ((even? b) (fast_mult_iter (double a) (halve b) sum))
+  (else (fast_mult_iter a (- b 1) (+ sum a)))
+  )
+)
+
+
+(fast_mult_iter 4 2 0)
+(fast_mult_iter 3 6 0)
+(fast_mult_iter 6 8 0)
+(fast_mult_iter 9 10 0)
+(fast_mult_iter 12 12 0)
