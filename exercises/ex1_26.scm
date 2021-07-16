@@ -1,0 +1,2 @@
+; It is no longer O(log n) because now you have to evaluate 2 instances of expmod to do the multiplication.
+; So, instead of halving the number of steps at every even count, you halve it and then do the same number of steps. 
