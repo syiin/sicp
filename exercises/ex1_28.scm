@@ -1,11 +1,5 @@
 (define (expmod base exp m)
   (cond ((= exp 0) 1)
-        ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
-        (else (remainder (* base (expmod base (- exp 1) m)) m))))
-
-
-(define (expmod base exp m)
-  (cond ((= exp 0) 1)
         ((even? exp) (remainder (nontrivial (square (expmod base (/ exp 2) m)) exp m) m))
         (else (remainder (nontrivial (* base (expmod base (- exp 1) m)) exp m) m) )))
 
@@ -50,3 +44,8 @@
 ; "a “nontrivial square root of 1 modulo n” , that is, a number not equal to 1 or n - 1 whose square is equal to 1 modulo n"
 ; Where I believe it should say: "whose square is congruent to 1 modulo n"
 
+; Meditation: remember that it helps to print out the intermediary function outputs to check assumptions. 
+; Sometimes it's too easy to tunnel vision on one method that is working correctly rather than consider 
+; where else might be failing.
+; ie. we spent too long wondering where to put `nontrivial` when it worked just fine all along.
+; it was `fermat-test` that was incorrectly comparing to `a` still
