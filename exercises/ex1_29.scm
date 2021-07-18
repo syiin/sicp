@@ -1,8 +1,5 @@
 (define (cube x) (* x x x))
 
-(define (h a b n) ( / (- b a) n))
-(define (y f a h k) (f (+ a (* h k))))
-
 (define (simpson f a b n)
   (define (h) ( / (- b a) n))
   (define (y k) (f (+ a (* (h) k))))
