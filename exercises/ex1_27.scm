@@ -10,7 +10,6 @@
         ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
         (else (remainder (* base (expmod base (- exp 1) m)) m))))
 
-
 (define (congruent n a)
   (= (expmod a n n) a))
 
