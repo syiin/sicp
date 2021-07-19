@@ -1,14 +1,19 @@
-; phi = 1.61803398875
+; 1/phi = 0.61803444782
 (define (cont-frac n d k)
   (if (= k 1)
     (/ (n k) (d k))
-    (+ (/ (n k) (cont-frac n d (- k 1))) (d (- k 1)))
+    (+ (/ (n k) (cont-frac n d (- k 1))) (d (- k 1)) )
   )
 )
 
+(define (cont-frac n d k)
+  (if (= k 1)
+    (/ (n k) (d k))
+    (/ (n k) (+ (cont-frac n d (- k 1)) (d k)))))
+
 (cont-frac (lambda (i) 1.0)
            (lambda (i) 1.0)
-           15) ;Value: 1.6180327868852458
+           15) 
 
 (define (cont-frac-iter n d k)
   (let ((initial_term (+ (d (- k 1)) (/ (n k) (d k)))))
@@ -20,6 +25,14 @@
   (iter (- k 1) initial_term)
 ))
 
-(cont-frac-iter (lambda (i) 1.0)
-                (lambda (i) 1.0)
-                12) ;Value: 1.6180257510729614
+
+(define (cont-frac n d k)
+  (define (iter i result)
+    (if (= i 0)
+        result
+        (iter (- i 1) (/ (n i) (+ (d i) result)))))
+  (iter k (/ (n k) (d k))))
+
+(cont-frac (lambda (i) 1.0)
+           (lambda (i) 1.0)
+            15)
