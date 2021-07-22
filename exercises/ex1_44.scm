@@ -28,3 +28,9 @@
 ((smooth (smooth (smooth square))) 3)
 
 ((n-smoothed square 3) 3)
+
+; note the order in n-smoothed and that scheme evaluates INSIDE OUT (not left to right or right to left)
+; ((repeated smooth n) f)
+; repeat on smooth n times -> that repeated smooth on square
+; an easy mistake to make is write it (repeated (smooth f) n) which becomes
+; smooth the square -> repeated square n times
