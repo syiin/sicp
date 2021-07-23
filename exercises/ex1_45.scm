@@ -44,7 +44,9 @@
 
 ;remember the order! we want to repeat average-damp ON exp_fn not repeat an average-damped exp_fn many times
 ;(avg-damp(avg-damp(avg-damp exp_fn))) VS ((avg-damp (exp_fn))((avg-damp (exp_fn))(avg-damp (exp_fn))))
-; it is the difference between composing with the lambda underneath average damp and the average damp itself
+;it is the difference between dampening on the a dampened function and changing the dampening function itself
+;ie. passing (lambda (x) (average x (f x)))) VS (lambda (x) (average x ((lambda (y) ( / 8 (fast_expt y 3) )) x))))
+;   being passed to repeated 
 
 ;exp_fn -> avg-damp -> repeated -> fixed-point 
 ;               VS
