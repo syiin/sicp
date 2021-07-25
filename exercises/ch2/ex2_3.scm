@@ -31,7 +31,6 @@
   (average-points start_p end_p)))
 
 ; Base Data
-
 (define bottom-left (make-point 0 0) )
 (define top-left (make-point 0 2) )
 (define top-right (make-point 5 2) )
@@ -59,6 +58,7 @@
 (area-rect rectangle) ;10
 (perimeter-rect rectangle) ;14
 
+; Representation #2
 (define (make-rect top_left_x top_left_y btm_right_x btm_right_y)
   (cons (cons top_left_x top_left_y) (cons btm_right_x btm_right_y)))
 (define (len-rect rect)
