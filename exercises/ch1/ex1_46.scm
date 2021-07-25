@@ -1,4 +1,3 @@
-
 ;pg133
 
 (define (improve guess x)
