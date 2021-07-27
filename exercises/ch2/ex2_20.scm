@@ -1,3 +1,4 @@
+(define (show n) ((display n) n) )
 (define (same-parity . a-list)
   (define (inner filter? a-list)
   (cond ((null? a-list) a-list)
@@ -5,8 +6,8 @@
         (else (inner filter? (cdr a-list)))))
   (if (even? (car a-list))
       (inner even? a-list)
-      (inner odd? a-list)))
-
+      (inner odd? a-list))
+)
 
 
 (same-parity 1 2 3 4 5 6 7)
