@@ -22,7 +22,6 @@
 (define branch-left (make-branch 3 1))
 (define branch-right (make-branch 6 3))
 (define mobile-1 (make-mobile branch-left branch-right))
-
 (define branch-right-2 (make-branch 9 mobile-1))
 (define mobile-2 (make-mobile branch-left branch-right-2))
 
@@ -70,3 +69,40 @@ mobile-2
 (is-balanced? more-balanced-mobile)   ;#t
 (is-balanced? more-imbalanced-mobile) ;#f
 
+(define (make-mobile left right) (cons left right))
+(define (make-branch length structure) (cons length structure))
+
+(define branch-left (make-branch 3 1))
+(define branch-right (make-branch 6 3))
+(define mobile-1 (make-mobile branch-left branch-right))
+(define branch-right-2 (make-branch 9 mobile-1))
+(define mobile-2 (make-mobile branch-left branch-right-2))
+
+(total-weight imbalanced-mobile) ;this doesn't need to be changed at all
+
+(define balanced-mobile (make-mobile 
+                         (make-branch 1 (make-mobile (make-branch 3 3) (make-branch 3 3))) 
+                         (make-branch 1 (make-mobile (make-branch 3 3) (make-branch 3 3)))))
+(define more-balanced-mobile (make-mobile 
+                              (make-branch 1 balanced-mobile)
+                              (make-branch 1 balanced-mobile)))
+
+(define imbalanced-mobile (make-mobile 
+                         (make-branch 3 (make-mobile (make-branch 12 2) (make-branch 2 12))) 
+                         (make-branch 13 (make-mobile (make-branch 8 8) (make-branch 4 6)))))
+(define more-imbalanced-mobile (make-mobile 
+                              (make-branch 1 imbalanced-mobile)
+                              (make-branch 1 imbalanced-mobile)))
+
+
+(define (right-branch mobile) (cdr mobile))     ; these primitives to access the underlying data structure 
+(define (branch-structure branch) (cdr branch)) ; has to change ie. 
+                                                ; (cdr (list 1 2)) = (2)
+                                                ; (cadr (list 1 2)) = 2
+                                                ; (cdr (cons 1 2)) = 2
+                                                ; (cadr (cons 1 2)) ;The object 2, passed as an argument to safe-car, is not the correct type.
+
+(is-balanced? imbalanced-mobile)      ;#f
+(is-balanced? balanced-mobile)        ;#t
+(is-balanced? more-balanced-mobile)   ;#t
+(is-balanced? more-imbalanced-mobile) ;#f
