@@ -49,8 +49,8 @@ mobile-2
     (let ((branch-len (branch-length branch))
           (branch-struct (branch-structure branch)))
     (if (pair? branch-struct) 
-        (* branch-len (total-weight (branch-structure branch)))
-        (* branch-len branch-struct))))
+        (* branch-len (total-weight (branch-structure branch))) ; the case when structure is a mobile
+        (* branch-len branch-struct))))                         ; the case when structure is the weight
   (define (structure-is-balanced? structure)
     (= (branch-torque (left-branch structure))
       (branch-torque (right-branch structure))))
@@ -62,7 +62,6 @@ mobile-2
 
 (define (is-balanced? mobile) 
   (and (handle-branch (left-branch mobile)) (handle-branch (right-branch mobile))))
-
 
 (is-balanced? imbalanced-mobile)      ;#f
 (is-balanced? balanced-mobile)        ;#t
