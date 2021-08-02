@@ -58,26 +58,31 @@
 (queens 4) ;Value: (((3 4) (1 3) (4 2) (2 1)) ((2 4) (4 3) (1 2) (3 1)))
 
 
-;(define (safe? k positions) true) 
 ;this was the puzzling bit, figuring out what positions was
-;positions is a list of possible positions the 4 queens could take  
-;ie. ((4 4) (4 3) (4 2) (4 1))
 ;note that flatmap calls queen-cols so adjoin-position will create 
 ;every possible position before filter is called column by column for
 ;each column 
-;((1 4) (2 3) (4 2) (4 1)) 
-;((2 4) (2 3) (4 2) (4 1)) 
-;((3 4) (2 3) (4 2) (4 1)) 
-;((4 4) (2 3) (4 2) (4 1)) 
-;((1 4) (3 3) (4 2) (4 1)) 
-;((2 4) (3 3) (4 2) (4 1)) 
-;((3 4) (3 3) (4 2) (4 1)) 
-;((4 4) (3 3) (4 2) (4 1)) 
-;((1 4) (4 3) (4 2) (4 1)) 
-;((2 4) (4 3) (4 2) (4 1)) 
-;((3 4) (4 3) (4 2) (4 1)) 
-;((4 4) (4 3) (4 2) (4 1))
+
 ;remember that since positions is a list of positions,
 ;safe? only sees each set of positions at a time 
 ;ie. ((4 4) (4 3) (4 2) (4 1)) 
-;and that filter will return an empty list if none match
+
+;(queen-cols 1) = (((1 1)) ((2 1)) ((3 1)) ((4 1)))
+;(queen-cols 2) = (filter safe? (((1 2) (1 1))  = (((3 2) (1 1)) 
+;                                ((2 2) (1 1))     ((4 2) (1 1)) 
+;                                ((3 2) (1 1))     ((4 2) (2 1)) 
+;                                ((4 2) (1 1))     ((1 2) (3 1)) 
+;                                ((1 2) (2 1))     ((1 2) (4 1)) 
+;                                ((2 2) (2 1))     ((2 2) (4 1)))
+;                                ((3 2) (2 1)) 
+;                                ((4 2) (2 1)) 
+;                                ((1 2) (3 1)) 
+;                                ((2 2) (3 1)) 
+;                                ((3 2) (3 1)) 
+;                                ((4 2) (3 1)) 
+;                                ((1 2) (4 1)) 
+;                                ((2 2) (4 1)) 
+;                                ((3 2) (4 1)) 
+;                                ((4 2) (4 1)))
+;...etc for each position inside (queen-cols 2), we will add a queen in every row in the 3rd column 
+; then filter those with safe?
