@@ -12,6 +12,8 @@
     '()
     (cons low (enumerate-interval (+ low 1) high))))
 
+; Solution from http://community.schemewiki.org/?sicp-ex-2.42
+
 (define empty-board '())
  (define (adjoin-position new-row k rest-of-queens) 
    (cons (list new-row k) rest-of-queens)) 
