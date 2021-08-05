@@ -1,4 +1,3 @@
-;origin-frame, edge1-frame, and edge2-frame
 (define (make-vect x y) (cons x y))
 (define (xcor-vect v) (car v))
 (define (ycor-vect v) (cdr v))
@@ -17,6 +16,8 @@
   (make-vect 
     (* sf (xcor-vect v))
     (* sf (ycor-vect v))))
+
+;REPRESENTATION #1
 
 (define (make-frame origin edge1 edge2)
   (list origin edge1 edge2))
@@ -41,6 +42,8 @@
 (edge1-frame frame1)                       ;Value: (1 . 0)
 (edge2-frame frame1)                       ;Value: (0 . 1)
 ((frame-coord-map frame1) (make-vect 2 2)) ;Value: (2 . 2)
+
+;REPRESENTATION #2
 
 (define (make-frame origin edge1 edge2)
   (cons origin (cons edge1 edge2)))
