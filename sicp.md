@@ -220,3 +220,37 @@ Consider that:
   1. a transformation run twice IS a transformation squared (remember our linear algebra)
       Q * D * D * D * D * D * D * D * Q^-1 = Q * (D * D) * (D * D) * (D * D) * Q^-1
   1. also, like `fast_expt` case in Ex1.16, conducting the operation once results in one step but squaring it skips more steps.
+
+### Ex.1.29
+Remember that it helps to print out the intermediary function outputs to check assumptions. Sometimes it's too easy to tunnel vision on one method that is working correctly rather than consider where else might be failing.
+
+ie. we spent too long wondering where to put `nontrivial` when it worked just fine all along - it was `fermat-test` that was incorrectly comparing to `a` still
+
+
+## Book Club Notes
+
+Admin
+1. Tangents are OK
+1. Do we want to stick to one book to the end or allow members to propose a rotation?
+
+My Random Misc Notes:
+
+Chapter 1
+- "here are these two young fish swimming along and they happen to meet an older fish swimming the other way, who nods at them and says “Morning, boys. How’s the water?” And the two young fish swim on for a bit, and then eventually one of them looks over at the other and goes “What the hell is water?”
+- a change in perspective is worth 80 IQ points
+- create a context that does the right thinking for you
+- iterative numerical methods for approximating things - is this how auto differentiation works? No, tensorflow can do symbolic differentiation, it's just integration is harder so numerical methods tend to be called for.
+
+Chapter 2
+- This notion of objects being abstracted by procedures as a separation reminds me of interfaces as a type in Golang (ie. an interface is a set of method signatures) 
+- "The key to understanding complicated things is to know what not to look at and what not to compute and what not to think" from Lecture 2
+- "Once you have two things, you have as many things as you want" Lecture 3
+
+```
+const cons = (a, b) => (pick) => pick == 1 ? a : b
+const car = (x) => x(1)
+const cdr = (x) => x(2)
+
+let pair = cons(4, 6)
+car(pair) 
+```

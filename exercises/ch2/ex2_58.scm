@@ -46,7 +46,6 @@
 (deriv expr 'x) ;Value: ((x * 3) + (3 * (x + (y + 2))))
 
 ;;; b
-
 (define (accumulate op initial sequence)
   (if (null? sequence)
       initial
