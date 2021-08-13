@@ -37,7 +37,6 @@
   (decode-1 bits tree))
 
 ;;; ENCODING PROCEDURES
-
 (define (idx sym lst)
   (define (iter sym lst i) 
     (cond ((null? lst) 0)
@@ -46,9 +45,7 @@
   (iter sym lst 1))
 
 (define (get-median-idx lst)
-  (if (= (length lst) 2)
-      1
-      (quotient (- (length lst) 1) 2)))
+  (ceiling (/ (length lst) 2)))
 
 (define (encode-symbol symbol tree)
   (define (which-branch sym tree)
