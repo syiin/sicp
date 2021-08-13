@@ -36,7 +36,9 @@
               (decode-1 (cdr bits) next-branch)))))
   (decode-1 bits tree))
 
-;;; ENCODING PROCEDURES
+;;; ENCODING PROCEDURES 
+
+;;; first attempt, works here but doesn't work in ex2.70
 (define (idx sym lst)
   (define (iter sym lst i) 
     (cond ((null? lst) 0)
@@ -45,7 +47,9 @@
   (iter sym lst 1))
 
 (define (get-median-idx lst)
-  (ceiling (/ (length lst) 2)))
+  (if (= (length lst) 2)
+      1
+      (quotient (- (length lst) 1) 2)))
 
 (define (encode-symbol symbol tree)
   (define (which-branch sym tree)
@@ -63,12 +67,22 @@
       (iter sym next-branch (append acc (list bit)))))))
   (iter symbol tree '()))
 
+;;; this works 
+(define (encode-symbol sym tree) 
+  (if (leaf? tree) 
+      (if (eq? sym (symbol-leaf tree)) 
+          '() 
+          (error "missing symbol: ENCODE-SYMBOL" sym)) 
+      (let ((left (left-branch tree))) 
+        (if (memq sym (symbols left)) 
+            (cons 0 (encode-symbol sym left)) 
+            (cons 1 (encode-symbol sym (right-branch tree))))))) 
+
 (define (encode message tree)
   (if (null? message)
       '()
       (append (encode-symbol (car message) tree)
               (encode (cdr message) tree))))
-
 
 (define sample-tree
   (make-code-tree (make-leaf 'A 4)
@@ -77,5 +91,6 @@
                   (make-code-tree (make-leaf 'D 1)
                                   (make-leaf 'C 1)))))
 
-(encode '(a b c a a d) sample-tree)            ;Value: (0 1 0 1 1 1 0 0 1 1 0)
-(decode '(0 1 0 1 1 1 0 0 1 1 0)  sample-tree) ;Value: (a b c a a d)
+(encode '(a b c a a d) sample-tree)
+(decode '(0 1 0 1 1 1 0 0 1 1 0)  sample-tree) 
+(decode (encode '(a b c a a d a c d b) sample-tree) sample-tree)
