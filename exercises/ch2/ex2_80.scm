@@ -86,6 +86,8 @@
        (lambda (x y) (tag (/ x y))))
   (put 'equ? '(scheme-number scheme-number)
        (lambda (x y) (= x y)))
+  (put 'zero? '(scheme-number)
+       (lambda (x) (= x 0)))
   (put 'make 'scheme-number
        (lambda (x) (tag x)))
   'done)
@@ -176,7 +178,9 @@
   (put 'div '(complex complex)
        (lambda (z1 z2) (tag (div-complex z1 z2))))
   (put 'equ? '(complex complex)
-       (lambda (z1 z2) (equ-complex z1 z2)))
+       (lambda (z1 z2) (tag (equ-complex z1 z2))))
+  (put 'zero? '(complex)
+       (lambda (z) (= (magnitude z) 0)))
   (put 'make-from-real-imag 'complex
        (lambda (x y) (tag (make-from-real-imag x y))))
   (put 'make-from-mag-ang 'complex
@@ -215,6 +219,7 @@
   (define (equ-rat x y)
     (and (= (numer x) (numer y))
          (= (denom x) (denom y))))
+  (define (zero-rat x) (= (numer x) 0))
   ;; interface to rest of the system
   (define (tag x) (attach-tag 'rational x))
   (put 'add '(rational rational)
@@ -226,7 +231,9 @@
   (put 'div '(rational rational)
        (lambda (x y) (tag (div-rat x y))))
   (put 'equ? '(rational rational)
-       (lambda (x y) (equ-rat x y)))
+       (lambda (x y) (tag (equ-rat x y))))
+  (put 'zero? '(rational)
+       (lambda (x) (zero-rat x)))
   (put 'make 'rational
        (lambda (n d) (tag (make-rat n d))))
   'done)
@@ -241,11 +248,13 @@
 (install-polar-package)
 (install-complex-package)
 
-(define (equ? x y) (apply-generic 'equ? x y))
+(define (zero? x) (apply-generic 'zero? x))
 
-(equ? (make-scheme-number 1) (make-scheme-number 1))
-(equ? (make-scheme-number 1) (make-scheme-number 2))
-(equ? (make-rational 1 2) (make-rational 1 2))
-(equ? (make-rational 1 2) (make-rational 1 3))
-(equ? (make-complex-from-real-imag 1 2) (make-complex-from-real-imag 1 2))
-(equ? (make-complex-from-real-imag 1 2) (make-complex-from-real-imag 1 3))
+(zero? (make-scheme-number 0))
+(zero? (make-scheme-number 1))
+
+(zero? (make-rational 0 2))
+(zero? (make-rational 1 2))
+
+(zero? (make-complex-from-real-imag 0 0))
+(zero? (make-complex-from-real-imag 1 2))

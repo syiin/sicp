@@ -246,11 +246,7 @@ Chapter 2
 - "The key to understanding complicated things is to know what not to look at and what not to compute and what not to think" from Lecture 2
 - "Once you have two things, you have as many things as you want" Lecture 3
 
-```
-const cons = (a, b) => (pick) => pick == 1 ? a : b
-const car = (x) => x(1)
-const cdr = (x) => x(2)
+###### Fri Aug 20 09:25:54 MYT 2021
 
-let pair = cons(4, 6)
-car(pair) 
-```
+1. The Power of Wishful thinking - is this similar to the idea of beginning with the end in mind? 
+1. Don't like writing code I cannot run - either copy code from ahead or skip problem entirely (ie. the entirety of the coercion exercises)
