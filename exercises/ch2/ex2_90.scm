@@ -455,3 +455,11 @@
 (mul polyA polyB)
 
 
+;Types have to be assigned as closely as possible to the actual data that is that type 
+;You can't define a polynomial subtype for sparse and dense on the polynomial structure itself. ie. (polynomial x (term stuff))
+;You have to tag the term list itself since the operations depend on the term list for the closure property to hold 
+;(ie. the result of adjoin-list is another term list)
+
+;Problems with this solution is that bypassing apply-generic and calling get directly within the polynomial package feels like a
+;leaky abstraction. Perhaps a better way to do it would be to write a special case of apply generic that takes only the type of the 
+;1st argument allowing for a generic 2nd argument. Coercion would've made this better.

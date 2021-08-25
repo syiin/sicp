@@ -252,3 +252,6 @@ Chapter 2
 1. Don't like writing code I cannot run - either copy code from ahead or skip problem entirely (ie. the entirety of the coercion exercises)
 1. Exercise 2.89, I spent far too long on it because I tried to not use the sparse representation at all and messing about with creating zero vectors, inserting into them based on index...etc. In the end, I just converted the dense into the sparse as multiplication drove me insane
 1. Can you think in Vim or VSCode?
+1. Types have to be assigned as closely as possible to the actual data that is that type 
+  - For example exercise 2.90, you can't define a polynomial subtype for sparse and dense on the polynomial structure itself. 
+  - You have to tag the term list itself since the operations depend on the term list for the closure property to hold (ie. the result of adjoin-list is another term list).
