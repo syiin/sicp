@@ -250,4 +250,5 @@ Chapter 2
 
 1. The Power of Wishful thinking - is this similar to the idea of beginning with the end in mind? 
 1. Don't like writing code I cannot run - either copy code from ahead or skip problem entirely (ie. the entirety of the coercion exercises)
-1. Exercise 2.89, I spent far too long on it because I tried to not use the sparse representation at all. In the end, I just converted the dense into the sparse as multiplication drove me insane
+1. Exercise 2.89, I spent far too long on it because I tried to not use the sparse representation at all and messing about with creating zero vectors, inserting into them based on index...etc. In the end, I just converted the dense into the sparse as multiplication drove me insane
+1. Can you think in Vim or VSCode?
