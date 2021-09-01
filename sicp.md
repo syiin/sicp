@@ -249,9 +249,22 @@ Chapter 2
 ###### Fri Aug 20 09:25:54 MYT 2021
 
 1. The Power of Wishful thinking - is this similar to the idea of beginning with the end in mind? 
-1. Don't like writing code I cannot run - either copy code from ahead or skip problem entirely (ie. the entirety of the coercion exercises)
+1. Don't like writing code I cannot run - either copy code from ahead or skip problem entirely (ie. the entirety of the coercion exercises). Made it harder to do the last exercises
 1. Exercise 2.89, I spent far too long on it because I tried to not use the sparse representation at all and messing about with creating zero vectors, inserting into them based on index...etc. In the end, I just converted the dense into the sparse as multiplication drove me insane
 1. Can you think in Vim or VSCode?
 1. Types have to be assigned as closely as possible to the actual data that is that type 
   - For example exercise 2.90, you can't define a polynomial subtype for sparse and dense on the polynomial structure itself. 
   - You have to tag the term list itself since the operations depend on the term list for the closure property to hold (ie. the result of adjoin-list is another term list).
+1. Chapter 3, yay! `begin` and `set!`, skipped ex2.91, far too excited to start chapter 3.
+1. How does `let ((var 100))` inside a procedure work? I can imagine it as pointers but not sure if correct way to think about it.
+(ie. `balance` is the name of a pointer that is instantiated once inside `new-withdraw` and the interpreter saves the word `balance` in its symbol table to mean that particular value in this procedure)
+  - Ahhh, remember, let is syntactic sugar for lambda wraps. So, `new-withdraw` uses lambda to wrap around the inner lambda. is this more or less confusing? I suppose if you consider `balance` as a pointer to an object of value 100 due to `set!`, it makes sense there. 
+  ```
+  (define new-withdraw
+    (lambda (balance)
+      (lambda (amount)
+        (if (>= balance amount)
+            (begin (set! balance (- balance amount))
+                  balance)
+            "Insufficient funds")) 100))
+  ```
