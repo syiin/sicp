@@ -33,17 +33,17 @@
   (monte-carlo n-trials (make-experiment x1 x2 y1 y2 pred)))
 
 
-(define c-center-x 5)
-(define c-center-y 7)
-(define c-radius 3)
+(define c-center-x 0)
+(define c-center-y 0)
+(define c-radius 1)
 
-(define lo-x 2.0)
-(define hi-x 8.0)
-(define lo-y 4.0)
-(define hi-y 10.0)
+(define lo-x -1.0)
+(define hi-x 1.0)
+(define lo-y -1.0)
+(define hi-y 1.0)
 (define area (* (- hi-x lo-x) (- hi-y lo-y)) )
 
 (define pi 
-   (/ (* (estimate-integral in-unit-circle? 2.0 8.0 4.0 10.0 100000) area) 
+   (/ (* (estimate-integral in-unit-circle? lo-x hi-x lo-y hi-y 100000) area) 
       (square c-radius))) 
-pi ;Value: 3.14168 
+pi ;Value: 3.14168 g
