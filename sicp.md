@@ -268,3 +268,4 @@ Chapter 2
                   balance)
             "Insufficient funds")) 100))
   ```
+  1. Exercise 6, just like OOP! message passing and all
