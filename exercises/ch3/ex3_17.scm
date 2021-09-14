@@ -9,16 +9,6 @@
 (define (count-item i) 
   (set! counted-list (cons i counted-list)))
 
-; (define (count-pairs x)
-;   (cond ((not (pair? x)) 0)
-;         ((not (has-counted? (car x))) 
-;           (begin 
-;             (count-item (car x)) 
-;             (+ 1 (count-pairs (cdr x)))))
-;         (else (+ (count-pairs (car x)) 
-;                  (count-pairs (cdr x)) 
-;                  1))))
-
 (define (count-pairs x)
   (cond ((not (pair? x)) 0)
         ((has-counted? x) 0)
@@ -26,9 +16,7 @@
                 (count-item x)
                 (+ (count-pairs (car x))
                   (count-pairs (cdr x))
-                  1)))
-  )
-)
+                  1)))))
 
 
 (count-pairs (list 'a 'b 'c))

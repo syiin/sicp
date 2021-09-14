@@ -268,4 +268,6 @@ Chapter 2
                   balance)
             "Insufficient funds")) 100))
   ```
-  1. Exercise 6, just like OOP! message passing and all
+  1. Exercise 3.6, just like OOP! message passing and all
+  1. Chapter 3 in general, arguments in functions suddenly have state, keeps confusing me
+  1. Reminds of javascript - the lines between functions and classes can be quite blurry

@@ -12,8 +12,7 @@
             ((eq? cmd 'reset)
               (lambda (new-x) (begin (set! x new-x) x)
             ))))
-    rand-internal
-))
+    rand-internal))
 
 (rand 'generate)
 (rand 'generate)
