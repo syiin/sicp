@@ -271,3 +271,7 @@ Chapter 2
   1. Exercise 3.6, just like OOP! message passing and all
   1. Chapter 3 in general, arguments in functions suddenly have state, keeps confusing me
   1. Reminds of javascript - the lines between functions and classes can be quite blurry
+
+  ###### Tue Sep 14 09:41:37 MYT 2021
+
+  1. Remember that pairs are pairs of _pointers_, not actual values and that `car` and `cdr` dereference them

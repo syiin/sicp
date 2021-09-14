@@ -1,0 +1,85 @@
+(define (make-deque)
+  (cons '() '()))
+
+(define (front-deque deque) (car deque))
+(define (set-front-ptr! deque item) (set-car! deque item))
+(define (set-rear-ptr! deque item) (set-cdr! deque item))
+(define (rear-deque deque) (cdr deque))
+(define (empty-deque? deque) (null? (front-deque deque)))
+
+(define (make-queue-item value) (cons value (cons '() '())))
+(define (item-value item) (car item))
+(define (item-pointers item) (cdr item))
+(define (get-forward item) (car (item-pointers item)))
+(define (get-backward item) (cdr (item-pointers item)))
+(define (set-forward! item next-item) (set-car! (item-pointers item) next-item))
+(define (set-backward! item prev-item) (set-cdr! (item-pointers item) prev-item))
+
+(define (print-deque deque)
+  (define (iter queue qsf)
+    (if (null? (car queue))
+      (reverse qsf)
+      (iter (cdr (front-deque queue)) (cons (item-value (front-deque queue)) qsf))
+    )
+  )
+  (iter deque '())
+)
+
+(define (rear-insert-deque! queue item)
+  (let ((new-pair (make-queue-item item)))
+    (cond ((empty-deque? queue)
+           (set-front-ptr! queue new-pair)
+           (set-rear-ptr! queue new-pair)
+           queue)
+          (else
+           (set-forward! (rear-deque queue) new-pair)
+           (set-backward! new-pair (rear-deque queue))
+           (set-rear-ptr! queue new-pair)
+           (print-deque queue)))))
+
+(define (front-insert-deque! queue item)
+  (let ((new-pair (make-queue-item item)))
+    (cond ((empty-deque? queue)
+           (set-front-ptr! queue new-pair)
+           (set-rear-ptr! queue new-pair)
+           queue)
+          (else
+           (set-backward! (front-deque queue) new-pair)
+           (set-forward! new-pair (front-deque queue))
+           (set-front-ptr! queue new-pair)
+           (print-deque queue)))))
+
+(define (front-delete-deque! queue)
+  (if (empty-deque? queue)
+    (error "FRONT DELETE called with an empty queue" queue)
+    (begin 
+      (set-front-ptr! queue (get-forward (front-deque queue)))
+      (set-backward! (front-deque queue) '())
+      (print-deque queue)
+    )))
+
+(define (rear-delete-deque! queue)
+  (if (empty-deque? queue)
+    (error "REAR DELETE called with an empty queue" queue)
+    (begin 
+      (set-rear-ptr! queue (get-backward (rear-deque queue)))
+      (set-forward! (rear-deque queue) '())
+      (print-deque queue)
+    )))
+
+(define queue (make-deque))
+(empty-deque? queue)
+
+(rear-insert-deque! queue 'a)
+(rear-insert-deque! queue 'b)
+(rear-insert-deque! queue 'c)
+(rear-insert-deque! queue 'd)
+
+(front-insert-deque! queue 1)
+(front-insert-deque! queue 2)
+(front-insert-deque! queue 3)
+
+(front-delete-deque! queue)
+
+(rear-delete-deque! queue)
+(rear-delete-deque! queue)

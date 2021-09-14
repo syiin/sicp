@@ -18,17 +18,14 @@
         '()
         (begin 
           (set! front-ptr (cdr front-ptr))
-          front-ptr
-          )))
-    
+          front-ptr)))
     (define (pop)
       (let ((popee (car front-ptr)))
         (delete)
         popee))
     (define (print-queue)
       (newline)
-      (display front-ptr)
-    )
+      (display front-ptr))
 
     (define (dispatch m) 
       (cond ((eq? m 'front-ptr) front-ptr)
@@ -37,9 +34,7 @@
             ((eq? m 'delete) (delete))
             ((eq? m 'push) push)
             ((eq? m 'pop) (pop))
-            ((eq? m 'print-queue) (print-queue))
-      )
-    )
+            ((eq? m 'print-queue) (print-queue))))
     dispatch))
 
 (define queue (make-queue))
