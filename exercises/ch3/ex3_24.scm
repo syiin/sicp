@@ -22,8 +22,7 @@
             ((eq? m 'lookup) lookup)
             (else "NO SUCH METHOD")))
     dispatch
-  )
-)
+  ))
 
 (define table (make-table eq?))
 ((table 'insert!) 'a 1)
