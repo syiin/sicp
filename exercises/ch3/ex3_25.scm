@@ -63,3 +63,5 @@ table
 (lookup '(a b c) table)
 (lookup '(a b d) table)
 (lookup '(a c d) table)
+
+(lookup '(b b b) table)
