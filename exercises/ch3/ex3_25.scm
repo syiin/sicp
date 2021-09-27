@@ -28,29 +28,21 @@
       ; if last key (ie. no longer nested)
       (if subtable
         (overwrite-record subtable value)
-        (add-record (make-record (car keys) value) table)
-      )
+        (add-record (make-record (car keys) value) table))
       ; if not last key insertion
       (if subtable
         (insert! (cdr keys) value subtable)
-        (add-record (make-nested keys value) table)
-      )
-    )))
+        (add-record (make-nested keys value) table)))))
 
 (define (lookup keys table)
   (let ((subtable (assoc (car keys) (cdr table))))
     (if (null? (cdr keys))
       (if subtable 
         (cdr subtable)
-        false
-      )
+        false)
       (if subtable
         (lookup (cdr keys) subtable)
-        false
-      )
-    )
-  )
-)
+        false))))
 
 (define table (make-table))
 (insert! '(a b c) 3 table)

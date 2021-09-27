@@ -274,5 +274,7 @@ Chapter 2
 
   ###### Tue Sep 14 09:41:37 MYT 2021
 
-  1. Remember that pairs are pairs of _pointers_, not actual values and that `car` and `cdr` dereference them
+  1. Remember that pairs are pairs of _pointers_, not actual values and that `car` and `cdr` dereference them, gotten too used to thinking of the pointers as the actual values
   1. Proud of exercise 2.32. Using everything from the last 3 chapters to create a layer of abstraction over a queue item type and then using it to easily reason about the logic needed to implement a doubly linked list to solve it in O(1)
+  1. Similarly with exercise 3.25, creating `add-record`, `overwrite-record`, `make-nested` instead of a series of cars and cdrs
+  1. Languages to handle concurrency, like HDLs? (ie. Chris Lattner)
