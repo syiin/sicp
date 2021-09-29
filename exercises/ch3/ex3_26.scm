@@ -15,7 +15,7 @@
 
 (define (assoc key records)
   (cond ((null? records) false)
-        ((equal? key) (get-value get-value records))
+        ((equal? key) (get-value records))
         ((< key (get-key records)) (assoc (get-left records)))
         (else (assoc key (get-right records)))))
 
@@ -23,7 +23,7 @@
   (define (iter record parent set-action)
     (cond ((null? record)       
             (let ((new-record (make-record key value))) 
-                  (set-action parent new)
+                  (set-action parent new-record)
                   (car new-record)))
           ((equal? key (get-key record)) 
                   (set-value! record value)
