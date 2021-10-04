@@ -272,14 +272,14 @@ Chapter 2
   1. Chapter 3 in general, arguments in functions suddenly have state, keeps confusing me
   1. Reminds of javascript - the lines between functions and classes can be quite blurry
 
-  ###### Tue Sep 14 09:41:37 MYT 2021
+###### Tue Sep 14 09:41:37 MYT 2021
 
-  1. Remember that pairs are pairs of _pointers_, not actual values and that `car` and `cdr` dereference them, gotten too used to thinking of the pointers as the actual values
-  1. Proud of exercise 2.32. Using everything from the last 3 chapters to create a layer of abstraction over a queue item type and then using it to easily reason about the logic needed to implement a doubly linked list to solve it in O(1)
-  1. Similarly with exercise 3.25, creating `add-record`, `overwrite-record`, `make-nested` instead of a series of cars and cdrs
-  1. Languages to handle concurrency, like HDLs? (ie. Chris Lattner)
-  1. Imperative-style VS Expression-style (https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-22.html#footnote_Temp_404)
-  1. One armed if statements, I wish I'd known earlier I could do this
-  1. Exercise 3.41, what do you think? Is it necessary to serialise read access? yes because it reduces the inbetweens or no because it doesn't change the state and therefore, the balance of the account is still valid in between operations? I think yes because a fast enough polling listener might be induced to withdraw or deposit while it's calling (account 'balance)
-  1. Exercise 3.39, does the serializer protect only within itself?
-  1. Didn't feel very comfortable with serializer until reading the next part about mutexes
+1. Remember that pairs are pairs of _pointers_, not actual values and that `car` and `cdr` dereference them, gotten too used to thinking of the pointers as the actual values
+1. Proud of exercise 2.32. Using everything from the last 3 chapters to create a layer of abstraction over a queue item type and then using it to easily reason about the logic needed to implement a doubly linked list to solve it in O(1)
+1. Similarly with exercise 3.25, creating `add-record`, `overwrite-record`, `make-nested` instead of a series of cars and cdrs
+1. Languages to handle concurrency, like HDLs? (ie. Chris Lattner)
+1. Imperative-style VS Expression-style (https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-22.html#footnote_Temp_404)
+1. One armed if statements, I wish I'd known earlier I could do this
+1. Exercise 3.41, what do you think? Is it necessary to serialise read access? yes because it reduces the inbetweens or no because it doesn't change the state and therefore, the balance of the account is still valid in between operations? I think yes because a fast enough polling listener might be induced to withdraw or deposit while it's calling (account 'balance)
+1. Exercise 3.39, does the serializer protect only within itself?
+1. Didn't feel very comfortable with serializer until reading the next part about mutexes. Consider exercise 3.45, it's easier to reason about why this doesn't work if you know how serialiser works

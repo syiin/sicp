@@ -2,8 +2,7 @@
   (cond ((= n 0) 0)
         ((= n 1) 1)
         (else (+ (fib_check (- n 1))
-                  (fib_check (- n 2)))))
-)
+                  (fib_check (- n 2))))))
 
 (define (fib n)
   (fib-iter 1 0 0 1 n))
@@ -18,8 +17,7 @@
                           (+ (* b p) (* a q))
                           p
                           q
-                          (- count 1))))
-)
+                          (- count 1)))))
 
 (fib_check 6)
 (fib 6)
