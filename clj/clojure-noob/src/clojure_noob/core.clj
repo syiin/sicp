@@ -30,6 +30,15 @@
       'done 
       (do (proc (stream-car stream))
               (stream-for-each proc (stream-cdr stream)))))
+(defn stream-filter [pred stream]
+  (cond (stream-null? stream) the-empty-stream
+        (pred (stream-car stream))
+          (cons-stream (stream-car stream)
+                        (stream-filter pred (stream-cdr stream)))
+        :else (stream-filter pred (stream-cdr stream))
+  )
+)
+
 
 (defn display-line [x]
   (println x))
@@ -37,14 +46,33 @@
   (stream-for-each display-line stream))
 
 
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+  (def ^:dynamic sum 0)
+  (binding [sum sum]
+    ; Exercise 3.53
+    (defn stream-enumerate-interval [low high]
+      (if (> low high)
+          the-empty-stream
+          (cons-stream low (stream-enumerate-interval (+ low 1) high))))
 
-  (defn stream-enumerate-interval [low high]
-    (if (> low high)
-        the-empty-stream
-        (cons-stream low (stream-enumerate-interval (+ low 1) high))))
+    (println "sum at :61 is" sum)
 
-  (display-stream (stream-enumerate-interval 0 10))
+    (defn accum [x] (set! sum (+ x sum)) sum)
+    (def seq
+      (stream-map accum
+        (stream-enumerate-interval 1 20))) 
+
+    (println "sum at :68 is" sum)
+    
+    (def y (stream-filter even? seq))
+    (println "sum at :71 is" sum)
+    (def z (stream-filter (fn [x] (= (mod x 5) 0)) seq))
+    (println "sum at :73 is" sum)
+    (display-stream y)
+    (display-stream z)
+  )
+
 )
