@@ -27,14 +27,12 @@
 (define fives (stream-filter (lambda (x) (= (remainder x 5) 0)) integers))
 (define S (cons-stream 1 (merge (merge twos threes) fives)))
 
-(stream-ref S 8)
 (stream-ref S 9)
 (stream-ref S 10)
 (stream-ref S 11)
-(stream-ref S 12)
-(stream-ref S 13)
 
-;SECOND ATTEMPT? cleaner but misses 14 for some reason...?
+; SECOND ATTEMPT? exactly what the book describes but misses 14 for some reason...? 
+; What am I misunderstanding?
 (define S (cons-stream 1 (merge (merge (scale-stream S 2) (scale-stream S 3)) 
                                  (scale-stream S 5))))
 
