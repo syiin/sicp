@@ -287,3 +287,4 @@ Chapter 2
 ###### Thu Oct 28 09:12:22 MYT 2021
 
 1. I think, the exercises in this book aren't necessarily always for you to run code. As in, sometimes, the point of the exercises isn't for you to write runnable code that works but properly apply the concepts and ideas at that given point. Take the tower of types for example or the exercises on message passing - we're not yet given the means to implement get and set and so, we couldn't actually make running code at that point (if we followed the order that the authors intended)
+1. Infinite streams that recursively call themselves do my head in a little. Simple streams like ones and integers make sense to me but more complicated ones somehow make me uncomfortable. Suspect it's a tendency to think of them too procedurally. 
